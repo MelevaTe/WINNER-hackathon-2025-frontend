@@ -5,7 +5,7 @@ import { ValidateProfileError } from "@/features/EditableProfileCard/model/const
 export const updateProfilePhoto = createAsyncThunk<string, FormData, ThunkConfig<ValidateProfileError[]>>(
 	"profile/updateProfilePhoto",
 	async (photoData, thunkApi) => {
-		const { extra, rejectWithValue, getState } = thunkApi;
+		const { extra, rejectWithValue } = thunkApi;
 
 		try {
 			const response = await extra.api.post("/profile/api/v1/profile/photo", photoData, {

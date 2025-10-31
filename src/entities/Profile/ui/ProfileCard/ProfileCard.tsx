@@ -51,7 +51,6 @@ export const ProfileCard = (props: ProfileCardProps) => {
 	const {
 		className,
 		data,
-		error,
 		readonly,
 		isLoading,
 		onChangeFirstname,
@@ -59,8 +58,6 @@ export const ProfileCard = (props: ProfileCardProps) => {
 		onChangeTravelInterest,
 		onSubmit,
 	} = props;
-
-	const { t } = useTranslation("profile");
 	const dispatch = useAppDispatch();
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -98,11 +95,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
 	);
 
 	if (isLoading) {
-		return (
-			<div className={classNames(cls.ProfileCard, { [cls.loading]: true }, [className])}>
-				<Loader />
-			</div>
-		);
+		return <div className={classNames(cls.ProfileCard, { [cls.loading]: true }, [className])}>Loading...</div>;
 	}
 
 	return (

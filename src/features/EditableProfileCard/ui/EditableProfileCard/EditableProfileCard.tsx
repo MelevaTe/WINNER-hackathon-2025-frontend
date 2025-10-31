@@ -9,6 +9,7 @@ import { RoutePath } from "@/shared/const/router.ts";
 import type { ReducersList } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { DynamicModuleLoader } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { Panel } from "@/shared/ui/Panel/Panel.tsx";
 import { Text } from "@/shared/ui/Text/Text";
 import * as cls from "./EditableProfileCard.module.scss";
 import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
@@ -30,7 +31,7 @@ const reducers: ReducersList = {
 	profile: profileReducer,
 };
 
-export const EditableProfileCard = ({ className, id, isOnboarding }: EditableProfileCardProps) => {
+export const EditableProfileCard = ({ id, isOnboarding }: EditableProfileCardProps) => {
 	const { t } = useTranslation("profile");
 	const dispatch = useAppDispatch();
 	const formData = useSelector(getProfileForm);
@@ -85,7 +86,7 @@ export const EditableProfileCard = ({ className, id, isOnboarding }: EditablePro
 	return (
 		<DynamicModuleLoader reducers={reducers}>
 			<div className={cls.OnBoarding}>
-				<div className={cls.OnBoardingWrapper}>
+				<Panel className={cls.OnBoardingWrapper}>
 					<EditableProfileCardHeader isOnboarding={isOnboarding} />
 					{validateErros?.length &&
 						validateErros.map((err) => (
@@ -105,7 +106,7 @@ export const EditableProfileCard = ({ className, id, isOnboarding }: EditablePro
 						onChangeTravelInterest={onChangeTravelStyles}
 						onSubmit={handleSubmit}
 					/>
-				</div>
+				</Panel>
 			</div>
 		</DynamicModuleLoader>
 	);
