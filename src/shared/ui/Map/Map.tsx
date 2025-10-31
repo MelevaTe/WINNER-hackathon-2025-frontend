@@ -3,10 +3,16 @@ import { type CSSProperties, useEffect, useRef } from "react";
 import { MapWrapper } from "./MapWrapper";
 import "./Map.scss";
 import { Directions } from "@2gis/mapgl-directions";
+import { Theme } from "@/app/providers/ThemeProvider";
 
 export interface MarkerData {
 	coordinates: [number, number];
 }
+
+const THEME_TO_STYLE_ID: Record<Theme, string> = {
+	[Theme.LIGHT]: "d013506c-74b4-421f-939d-58c7f475b6b4",
+	[Theme.DARK]: "bead9c80-2217-47fe-982e-4d385cc4e151",
+};
 
 interface MapProps {
 	className?: string;
@@ -14,9 +20,10 @@ interface MapProps {
 	markers?: MarkerData[];
 	onMapClick?: (coords: { lat: number; lon: number }) => void;
 	onResetRoute?: () => void;
+	theme: Theme;
 }
 
-export const Map = ({ className, style, markers = [], onMapClick, onResetRoute }: MapProps) => {
+export const Map = ({ className, style, markers = [], onMapClick, onResetRoute, theme }: MapProps) => {
 	const mapRef = useRef<any>(null);
 	const markersRef = useRef<any[]>([]);
 	const directionsRef = useRef<Directions | null>(null);
@@ -39,9 +46,12 @@ export const Map = ({ className, style, markers = [], onMapClick, onResetRoute }
 
 			mapRef.current = map;
 
+			if (THEME_TO_STYLE_ID[theme]) {
+				map.setStyleById(THEME_TO_STYLE_ID[theme]);
+			}
+
 			if (onMapClick) {
 				clickHandler = (e: any) => {
-					console.log("event", e);
 					const lat = e.lngLat[0];
 					const lon = e.lngLat[1];
 					onMapClick({ lat, lon });
@@ -66,7 +76,7 @@ export const Map = ({ className, style, markers = [], onMapClick, onResetRoute }
 			button = control.getContainer().querySelector(".mapgl-geolocate-button");
 
 			const success = (pos: GeolocationPosition) => {
-				const center: [number, number] = [pos.coords.latitude, pos.coords.longitude];
+				const center: [number, number] = [pos.coords.longitude, pos.coords.latitude];
 				if (circle) circle.destroy();
 				circle = new mapgl.CircleMarker(map, {
 					coordinates: center,
@@ -131,7 +141,6 @@ export const Map = ({ className, style, markers = [], onMapClick, onResetRoute }
 					const marker = new mapgl.Marker(map, {
 						coordinates: markerData.coordinates,
 					});
-					console.log("marker", marker);
 					markersRef.current.push(marker);
 				});
 
@@ -161,7 +170,6 @@ export const Map = ({ className, style, markers = [], onMapClick, onResetRoute }
 				}
 
 				const points = markers.map((m) => m.coordinates);
-				console.log("points", points);
 
 				if (!directionsRef.current) {
 					directionsRef.current = new Directions(map, {
@@ -210,7 +218,14 @@ export const Map = ({ className, style, markers = [], onMapClick, onResetRoute }
 				mapRef.current.destroy();
 			}
 		};
-	}, [markers, onMapClick, onResetRoute]);
+	}, [markers, onMapClick, onResetRoute, theme]);
+
+	useEffect(() => {
+		const map = mapRef.current;
+		if (map && THEME_TO_STYLE_ID[theme]) {
+			map.setStyleById(THEME_TO_STYLE_ID[theme]);
+		}
+	}, [theme]);
 
 	return (
 		<div

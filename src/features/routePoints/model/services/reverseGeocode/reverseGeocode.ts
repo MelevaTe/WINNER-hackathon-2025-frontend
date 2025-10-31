@@ -9,7 +9,6 @@ export const reverseGeocode = createAsyncThunk(
 		if (!address) {
 			return thunkAPI.rejectWithValue("Не удалось определить адрес по координатам");
 		}
-
 		return address;
 	}
 );

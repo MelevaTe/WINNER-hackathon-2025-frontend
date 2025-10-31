@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { geocodeFromAddress } from "@/features/routePoints/model/services/geocodeAdress/geocodeAddress.ts";
 import { geocodeFromAddressTo } from "@/features/routePoints/model/services/geocodeAdressTo/geocodeAdressTo.ts";
@@ -15,10 +15,13 @@ export interface RoutePointsFormProps {
 	className?: string;
 }
 
-const RoutePointsForm = ({ className }: RoutePointsFormProps) => {
+const RoutePointsForm = ({}: RoutePointsFormProps) => {
 	const dispatch = useAppDispatch();
 	const fromAddress = useSelector(getRoutePointsFromAddress);
 	const toAddress = useSelector(getRoutePointsToAddress);
+
+	const [isFromUserInput, setIsFromUserInput] = useState(false);
+	const [isToUserInput, setIsToUserInput] = useState(false);
 
 	const triggerGeocodeFrom = useCallback(() => {
 		if (fromAddress.trim()) {
@@ -31,8 +34,22 @@ const RoutePointsForm = ({ className }: RoutePointsFormProps) => {
 	const debouncedGeocodeFrom = useDebounce(triggerGeocodeFrom, 500);
 
 	useEffect(() => {
-		debouncedGeocodeFrom();
-	}, [fromAddress, debouncedGeocodeFrom]);
+		if (isFromUserInput) {
+			debouncedGeocodeFrom();
+		}
+	}, [fromAddress, isFromUserInput, debouncedGeocodeFrom]);
+
+	const onChangeFromAddress = useCallback(
+		(value?: string) => {
+			setIsFromUserInput(true);
+			dispatch(routePointsActions.setFromAddress(value || ""));
+		},
+		[dispatch]
+	);
+
+	const handleFromBlur = () => {
+		setIsFromUserInput(false);
+	};
 
 	const triggerGeocodeTo = useCallback(() => {
 		if (toAddress.trim()) {
@@ -45,22 +62,22 @@ const RoutePointsForm = ({ className }: RoutePointsFormProps) => {
 	const debouncedGeocodeTo = useDebounce(triggerGeocodeTo, 500);
 
 	useEffect(() => {
-		debouncedGeocodeTo();
-	}, [toAddress, debouncedGeocodeTo]);
-
-	const onChangeFromAddress = useCallback(
-		(value?: string) => {
-			dispatch(routePointsActions.setFromAddress(value || ""));
-		},
-		[dispatch]
-	);
+		if (isToUserInput) {
+			debouncedGeocodeTo();
+		}
+	}, [toAddress, isToUserInput, debouncedGeocodeTo]);
 
 	const onChangeToAddress = useCallback(
 		(value?: string) => {
+			setIsToUserInput(true);
 			dispatch(routePointsActions.setToAddress(value || ""));
 		},
 		[dispatch]
 	);
+
+	const handleToBlur = () => {
+		setIsToUserInput(false);
+	};
 
 	return (
 		<>
@@ -84,6 +101,7 @@ const RoutePointsForm = ({ className }: RoutePointsFormProps) => {
 						className={cls.InputAuthForm}
 						value={fromAddress}
 						onChange={onChangeFromAddress}
+						onBlur={handleFromBlur}
 					/>
 				</div>
 				<div>
@@ -99,6 +117,7 @@ const RoutePointsForm = ({ className }: RoutePointsFormProps) => {
 						className={cls.InputAuthForm}
 						value={toAddress}
 						onChange={onChangeToAddress}
+						onBlur={handleToBlur}
 					/>
 				</div>
 			</div>

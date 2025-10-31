@@ -1,15 +1,9 @@
 import { useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { getUserAuthData } from "@/entities/User";
-import { $api } from "@/shared/api/api";
-import { RoutePath } from "@/shared/const/router";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
 import { Text } from "@/shared/ui/Text/Text";
 import * as cls from "./EditableProfileCardHeader.module.scss";
-import { getProfileData } from "../../model/selectors/getProfileData/getProfileData";
 import { getProfileReadonly } from "../../model/selectors/getProfileReadonly/getProfileReadonly";
 import { updateProfileData } from "../../model/services/updateProfileData/updateProfileData";
 import { profileActions } from "../../model/slice/profileSlice";
@@ -19,14 +13,12 @@ interface EditableProfileCardHeaderProps {
 	isOnboarding?: boolean;
 }
 
-export const EditableProfileCardHeader = ({ className, isOnboarding }: EditableProfileCardHeaderProps) => {
-	const { t } = useTranslation("profile");
-	const authData = useSelector(getUserAuthData);
-	const profileData = useSelector(getProfileData);
-	const isMyPage = authData?.id === profileData?.id;
+export const EditableProfileCardHeader = ({ isOnboarding }: EditableProfileCardHeaderProps) => {
+	// const isMyPage = authData?.id === profileData?.id;
+	// Mock DATA
+	const isMyPage = true;
 	const readonly = useSelector(getProfileReadonly);
 	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
 
 	const onEdit = useCallback(() => {
 		dispatch(profileActions.setReadonly(false));
@@ -39,23 +31,6 @@ export const EditableProfileCardHeader = ({ className, isOnboarding }: EditableP
 	const onSave = useCallback(() => {
 		dispatch(updateProfileData());
 	}, [dispatch]);
-
-	const onChat = useCallback(async () => {
-		if (!profileData?.id) {
-			console.log("id нету");
-			return;
-		}
-
-		try {
-			const response = await $api.post(`/chats/create?secondUserId=${profileData.id}`);
-			const chatId = response.data?.data?.id;
-			if (chatId) {
-				navigate(`${RoutePath.chats_details}${chatId}`);
-			} else {
-				navigate(RoutePath.chats);
-			}
-		} catch (error) {}
-	}, [profileData?.id, navigate]);
 
 	if (isOnboarding) {
 		return (
@@ -92,46 +67,37 @@ export const EditableProfileCardHeader = ({ className, isOnboarding }: EditableP
 					as={"p"}
 				/>
 			</div>
-			<Text title={t("Профиль")} />
 			{isMyPage ? (
 				<div className={cls.btnWrapper}>
 					{readonly ? (
 						<Button
-							className={cls.editBtn}
-							theme={ButtonTheme.OUTLINE}
+							theme={ButtonTheme.ACCENT}
+							className={cls.FormButton}
 							onClick={onEdit}
 						>
-							{t("Редактировать")}
+							Редактировать
 						</Button>
 					) : (
-						<>
+						<div className={cls.btnWrapper}>
 							<Button
-								className={cls.editBtn}
-								theme={ButtonTheme.OUTLINE_RED}
+								theme={ButtonTheme.ACCENT}
+								className={cls.FormButton}
 								onClick={onCancelEdit}
 							>
-								{t("Отменить")}
+								Отменить
 							</Button>
 							<Button
-								className={cls.saveBtn}
-								theme={ButtonTheme.OUTLINE}
+								theme={ButtonTheme.ACCENT}
+								className={cls.FormButton}
 								onClick={onSave}
 							>
-								{t("Сохранить")}
+								Сохранить
 							</Button>
-						</>
+						</div>
 					)}
 				</div>
 			) : (
-				<div className={cls.btnWrapper}>
-					<Button
-						className={cls.editBtn}
-						theme={ButtonTheme.OUTLINE}
-						onClick={onChat}
-					>
-						{t("Написать")}
-					</Button>
-				</div>
+				<div className={cls.btnWrapper} />
 			)}
 		</>
 	);

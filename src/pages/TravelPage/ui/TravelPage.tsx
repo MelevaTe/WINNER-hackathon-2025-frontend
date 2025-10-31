@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { getTripResultData, getTripRouteMarkers } from "src/features/tripResult";
+import { useTheme } from "@/app/providers/ThemeProvider";
 import { getRoutePointsFromAddressCord, getRoutePointsToAddressCords } from "@/features/routePoints";
 import { reverseGeocode } from "@/features/routePoints/model/services/reverseGeocode/reverseGeocode.ts";
 import { reverseGeocodeTo } from "@/features/routePoints/model/services/reverseGeocodeTo/reverseGeocodeTo.ts";
@@ -27,17 +28,14 @@ const TravelPage: React.FC = () => {
 	const tripResult = useSelector(getTripResultData);
 	const isRouteBuilt = Boolean(tripResult?.places && tripResult.places.length > 0);
 
-	console.log("result", result);
+	const { theme, toggleTheme } = useTheme();
 
 	const handleResetRoute = () => {
 		dispatch(routePointsActions.clearRoutePoints());
 		dispatch(tripResultActions.clearTripResult());
-		console.log('clear')
 	};
 
 	const handleMapClick = (coords: { lat: number; lon: number }) => {
-		console.log("Координаты уже в aboutPage", coords);
-
 		const coordArray: [number, number] = [coords.lat, coords.lon];
 
 		if (!fromCoords) {
@@ -67,14 +65,14 @@ const TravelPage: React.FC = () => {
 		const finalMarkers: MarkerData[] = [];
 		if (fromCoords) {
 			finalMarkers.push({
-				coordinates: [fromCoords.lon, fromCoords.lat],
+				coordinates: [fromCoords.lat, fromCoords.lon],
 			});
 		}
 		finalMarkers.push(...result);
 
 		if (toCoords) {
 			finalMarkers.push({
-				coordinates: [toCoords.lon, toCoords.lat],
+				coordinates: [toCoords.lat, toCoords.lon],
 			});
 		}
 
@@ -82,12 +80,12 @@ const TravelPage: React.FC = () => {
 	} else {
 		if (fromCoords) {
 			markersToDisplay.push({
-				coordinates: [fromCoords.lon, fromCoords.lat],
+				coordinates: [fromCoords.lat, fromCoords.lon],
 			});
 		}
 		if (toCoords) {
 			markersToDisplay.push({
-				coordinates: [toCoords.lon, toCoords.lat],
+				coordinates: [toCoords.lat, toCoords.lon],
 			});
 		}
 	}
@@ -105,6 +103,7 @@ const TravelPage: React.FC = () => {
 				onMapClick={handleMapClick}
 				markers={markersToDisplay}
 				onResetRoute={handleResetRoute}
+				theme={theme}
 			/>
 		</DynamicModuleLoader>
 	);

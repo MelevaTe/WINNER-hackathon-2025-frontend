@@ -46,7 +46,9 @@ export const geocodeAddressApi = async (address: string): Promise<{ lat: number;
 			return null;
 		}
 
-		return data.result.items[0].point;
+		const { lat, lon } = data.result.items[0].point;
+
+		return { lat: lon, lon: lat };
 	} catch (error) {
 		console.error("2gis Geocoding failed:", error);
 		return null;
