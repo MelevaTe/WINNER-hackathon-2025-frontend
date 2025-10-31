@@ -11,7 +11,7 @@ import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { Badge } from "@/shared/ui/Badge/Badge";
 import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
 import { Text } from "@/shared/ui/Text/Text";
-import * as cls from "./TripForm.module.scss";
+import cls from "./TripForm.module.scss";
 import { getBudget } from "../model/selectors/getBudget.ts";
 import { getRouteType } from "../model/selectors/getRouteType.ts";
 import { getTravelStyle } from "../model/selectors/getTravelStyle.ts";

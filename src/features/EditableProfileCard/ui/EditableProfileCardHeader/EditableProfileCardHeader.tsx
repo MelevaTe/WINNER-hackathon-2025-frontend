@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
 import { Text } from "@/shared/ui/Text/Text";
-import * as cls from "./EditableProfileCardHeader.module.scss";
+import cls from "./EditableProfileCardHeader.module.scss";
 import { getProfileReadonly } from "../../model/selectors/getProfileReadonly/getProfileReadonly";
 import { updateProfileData } from "../../model/services/updateProfileData/updateProfileData";
 import { profileActions } from "../../model/slice/profileSlice";
@@ -37,13 +37,11 @@ export const EditableProfileCardHeader = ({ isOnboarding }: EditableProfileCardH
 			<div className={cls.wrapperText}>
 				<Text
 					text={"Расскажите о себе"}
-					className={cls.titleH}
 					align={"center"}
 					as={"h2"}
 				/>
 				<Text
 					text={"Это поможет нам создать идеальный маршрут для вас"}
-					className={cls.titleP}
 					align={"center"}
 					as={"p"}
 				/>
@@ -56,13 +54,11 @@ export const EditableProfileCardHeader = ({ isOnboarding }: EditableProfileCardH
 			<div className={cls.wrapperText}>
 				<Text
 					text={"Привет снова!"}
-					className={cls.titleH}
 					align={"center"}
 					as={"h2"}
 				/>
 				<Text
 					text={"Это поможет нам создать идеальный маршрут для вас"}
-					className={cls.titleP}
 					align={"center"}
 					as={"p"}
 				/>
@@ -72,7 +68,6 @@ export const EditableProfileCardHeader = ({ isOnboarding }: EditableProfileCardH
 					{readonly ? (
 						<Button
 							theme={ButtonTheme.ACCENT}
-							className={cls.FormButton}
 							onClick={onEdit}
 						>
 							Редактировать
@@ -81,14 +76,12 @@ export const EditableProfileCardHeader = ({ isOnboarding }: EditableProfileCardH
 						<div className={cls.btnWrapper}>
 							<Button
 								theme={ButtonTheme.ACCENT}
-								className={cls.FormButton}
 								onClick={onCancelEdit}
 							>
 								Отменить
 							</Button>
 							<Button
 								theme={ButtonTheme.ACCENT}
-								className={cls.FormButton}
 								onClick={onSave}
 							>
 								Сохранить

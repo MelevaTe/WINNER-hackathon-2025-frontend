@@ -9,7 +9,7 @@ import AppLink, { AppLinkTheme } from "@/shared/ui/AppLink/AppLink";
 import { Text } from "@/shared/ui/Text/Text";
 import LangSwitcher from "@/widgets/LangSwitcher/LangSwitcher.tsx";
 import { ThemeSwitcher } from "@/widgets/ThemeSwitcher";
-import * as cls from "./Navbar.module.scss";
+import cls from "./Navbar.module.scss";
 
 interface NavbarProps {
 	className?: string;

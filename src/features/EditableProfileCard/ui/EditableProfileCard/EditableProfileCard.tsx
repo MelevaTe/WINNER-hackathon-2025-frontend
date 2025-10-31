@@ -11,7 +11,7 @@ import { DynamicModuleLoader } from "@/shared/lib/components/DynamicModuleLoader
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Panel } from "@/shared/ui/Panel/Panel.tsx";
 import { Text } from "@/shared/ui/Text/Text";
-import * as cls from "./EditableProfileCard.module.scss";
+import cls from "./EditableProfileCard.module.scss";
 import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
 import { getProfileForm } from "../../model/selectors/getProfileForm/getProfileForm";
 import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";

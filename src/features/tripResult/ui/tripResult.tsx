@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getTripPlaces } from "@/features/tripResult/model/selectors/getTripPlaces/getTripPlaces.ts";
 import { Card } from "@/shared/ui/Card/Card.tsx";
-import * as cls from "./TripResult.module.scss";
+import cls from "./TripResult.module.scss";
 
 interface tripResultProps {
 	className?: string;

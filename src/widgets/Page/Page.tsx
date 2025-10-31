@@ -8,7 +8,7 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll";
 import { useThrottle } from "@/shared/lib/hooks/useThrottle/useThrottle";
-import * as cls from "./Page.module.scss";
+import cls from "./Page.module.scss";
 import { getScrollSaveByPath, ScrollSaveActions } from "./ScrollSave";
 
 interface PageProps {

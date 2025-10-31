@@ -8,7 +8,7 @@ import { useMobile } from "@/shared/lib/hooks/useMobile/useMobile.ts";
 import { Button, ButtonTheme } from "@/shared/ui/Button/Button.tsx";
 import { Panel } from "@/shared/ui/Panel/Panel.tsx";
 import { Text } from "@/shared/ui/Text/Text.tsx";
-import * as cls from "./Sidebar.module.scss";
+import cls from "./Sidebar.module.scss";
 
 interface SidebarProps {
 	className?: string;
@@ -59,14 +59,12 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 									<div className={cls.TextWrapper}>
 										<Text
 											text={"Спланировать маршрут"}
-											className={cls["title"]}
 											align={"left"}
 											as={"h2"}
 											size={"s"}
 										/>
 										<Text
 											text={"Выберите точки на карте и настройте параметры"}
-											className={cls["title"]}
 											align={"left"}
 											size={"s"}
 											as={"h3"}
@@ -90,7 +88,6 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 						<div className={cls.TextWrapper}>
 							<Text
 								text={"Ваш персональный маршрут"}
-								className={cls["title"]}
 								align={"left"}
 								as={"h2"}
 								size={"s"}

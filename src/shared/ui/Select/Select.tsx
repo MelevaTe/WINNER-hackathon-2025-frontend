@@ -1,6 +1,6 @@
 import type { ChangeEvent } from "react";
 import React, { memo, useMemo } from "react";
-import * as cls from "./Select.module.scss";
+import cls from "./Select.module.scss";
 import type { Mods } from "../../lib/classNames/classNames";
 import { classNames } from "../../lib/classNames/classNames";
 

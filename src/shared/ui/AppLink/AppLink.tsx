@@ -2,7 +2,7 @@ import type { FC } from "react";
 import React, { memo } from "react";
 import type { LinkProps } from "react-router-dom";
 import { Link } from "react-router-dom";
-import * as cls from "./AppLink.module.scss";
+import cls from "./AppLink.module.scss";
 import { classNames } from "../../lib/classNames/classNames";
 
 export enum AppLinkTheme {

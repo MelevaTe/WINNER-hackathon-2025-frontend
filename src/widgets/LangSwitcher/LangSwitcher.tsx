@@ -2,7 +2,7 @@ import { Globe } from "lucide-react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import * as cls from "./LangSwitcher.module.scss";
+import cls from "./LangSwitcher.module.scss";
 
 interface LangSwitcherProps {
 	className?: string;

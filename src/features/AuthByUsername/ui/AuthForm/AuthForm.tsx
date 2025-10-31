@@ -14,7 +14,7 @@ import { Input, InputTheme } from "@/shared/ui/Input/Input";
 import type { TabItem } from "@/shared/ui/Tabs/Tabs";
 import { Tabs } from "@/shared/ui/Tabs/Tabs";
 import { Text } from "@/shared/ui/Text/Text";
-import * as cls from "./AuthForm.module.scss";
+import cls from "./AuthForm.module.scss";
 import { getLoginConfirmPassword } from "../../model/selectors/getLoginConfrimPassword/getLoginConfirmPassword";
 import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
 import { getLoginPassword } from "../../model/selectors/getLoginPassword/getLoginPassword";

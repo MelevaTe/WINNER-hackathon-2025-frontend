@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from "react";
 import React from "react";
-import * as cls from "./Card.module.scss";
+import cls from "./Card.module.scss";
 import { classNames } from "../../lib/classNames/classNames";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {

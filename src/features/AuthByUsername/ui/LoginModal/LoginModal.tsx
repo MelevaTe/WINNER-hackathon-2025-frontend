@@ -3,7 +3,7 @@ import { AuthFormAsync } from "@/features/AuthByUsername/ui/AuthForm/AuthForm.as
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Loader } from "@/shared/ui/Loader/Loader";
 import { Modal } from "@/shared/ui/Modal/Modal";
-import * as cls from "./LoginModal.module.scss";
+import cls from "./LoginModal.module.scss";
 
 interface LoginModalProps {
 	className?: string;

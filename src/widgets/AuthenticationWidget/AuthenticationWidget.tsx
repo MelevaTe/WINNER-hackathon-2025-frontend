@@ -6,7 +6,7 @@ import { AuthGoogle } from "@/features/AuthByGoogle";
 import { AuthForm } from "@/features/AuthByUsername";
 import { RoutePath } from "@/shared/const/router";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import * as cls from "./AuthenticationWidget.module.scss";
+import cls from "./AuthenticationWidget.module.scss";
 
 interface AuthenticationWidgetProps {
 	className?: string;

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { memo, useCallback, useState } from "react";
 import { Theme, useTheme } from "@/app/providers/ThemeProvider";
 import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
-import * as cls from "./Tabs.module.scss";
+import cls from "./Tabs.module.scss";
 import { classNames } from "../../lib/classNames/classNames";
 
 export interface TabItem {

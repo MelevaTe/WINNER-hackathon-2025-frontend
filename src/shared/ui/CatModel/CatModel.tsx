@@ -1,7 +1,7 @@
 import Spline from "@splinetool/react-spline";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import * as cls from "./CatModel.module.scss";
+import cls from "./CatModel.module.scss";
 
 interface BearProps {
 	className?: string;

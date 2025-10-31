@@ -1,6 +1,6 @@
 import type { FC, SVGProps } from "react";
 import React from "react";
-import * as cls from "./Icon.module.scss";
+import cls from "./Icon.module.scss";
 import { classNames } from "../../lib/classNames/classNames";
 
 interface IconProps extends SVGProps<SVGSVGElement> {

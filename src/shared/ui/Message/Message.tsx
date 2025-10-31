@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import React from "react";
 import { Icon } from "@/shared/ui/Icon/Icon";
-import * as cls from "./Message.module.scss";
+import cls from "./Message.module.scss";
 import MessageIcon from "../../assets/icons/message.svg?react";
 import MessageNotOwnIcon from "../../assets/icons/messageNotOwn.svg?react";
 import { classNames } from "../../lib/classNames/classNames";

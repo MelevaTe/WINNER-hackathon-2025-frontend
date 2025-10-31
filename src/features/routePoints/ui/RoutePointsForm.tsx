@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce.ts";
 import { Input } from "@/shared/ui/Input/Input.tsx";
 import { Text } from "@/shared/ui/Text/Text";
-import * as cls from "./RoutePointsForm.module.scss";
+import cls from "./RoutePointsForm.module.scss";
 import { getRoutePointsFromAddress } from "../model/selectors/getRoutePointsFromAddress/getRoutePointsFromAddress.ts";
 import { getRoutePointsToAddress } from "../model/selectors/getRoutePointsToAddress/getRoutePointsToAddress.ts";
 import { routePointsActions } from "../model/slices/routePointsSlice.ts";

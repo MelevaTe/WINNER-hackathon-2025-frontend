@@ -12,7 +12,7 @@ import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { Map, type MarkerData } from "@/shared/ui/Map/Map.tsx";
 import { Navbar } from "@/widgets/Navbar";
 import { Sidebar } from "@/widgets/Sidebar";
-import * as cls from "./TravelPage.module.scss";
+import cls from "./TravelPage.module.scss";
 
 const reducers = {
 	routePoints: routePointsReducer,

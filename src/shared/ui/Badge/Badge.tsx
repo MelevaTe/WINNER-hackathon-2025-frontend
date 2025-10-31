@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import type { Mods } from "@/shared/lib/classNames/classNames";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import * as cls from "./Badge.module.scss";
+import cls from "./Badge.module.scss";
 
 interface BadgeProps extends HTMLAttributes<HTMLDivElement> {
 	className?: string;

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import * as cls from "./Modal.module.scss";
+import cls from "./Modal.module.scss";
 import type { Mods } from "../../lib/classNames/classNames";
 import { classNames } from "../../lib/classNames/classNames";
 import Portal from "../Portal/Portal";

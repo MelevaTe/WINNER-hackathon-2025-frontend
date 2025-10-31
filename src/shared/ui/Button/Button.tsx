@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, FC, ReactNode } from "react";
 import React, { memo } from "react";
-import * as cls from "./Button.module.scss";
+import cls from "./Button.module.scss";
 import type { Mods } from "../../lib/classNames/classNames";
 import { classNames } from "../../lib/classNames/classNames";
 

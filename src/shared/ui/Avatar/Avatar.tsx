@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { useMemo } from "react";
-import * as cls from "./Avatar.module.scss";
+import cls from "./Avatar.module.scss";
 import UserIcon from "../../assets/icons/user-32-32.svg?react";
 import type { Mods } from "../../lib/classNames/classNames";
 import { classNames } from "../../lib/classNames/classNames";

@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import * as cls from "./Code.module.scss";
+import cls from "./Code.module.scss";
 import CopyIcon from "../../assets/icons/copy-20-20.svg?react";
 import { classNames } from "../../lib/classNames/classNames";
 import { Button, ButtonTheme } from "../Button/Button";

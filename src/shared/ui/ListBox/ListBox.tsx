@@ -1,7 +1,7 @@
 import { Listbox as HListBox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
 import type { ReactNode } from "react";
 import React from "react";
-import * as cls from "./ListBox.module.scss";
+import cls from "./ListBox.module.scss";
 import { classNames } from "../../lib/classNames/classNames";
 import type { DropDownDirection } from "../../types/ui";
 import { Button } from "../Button/Button";

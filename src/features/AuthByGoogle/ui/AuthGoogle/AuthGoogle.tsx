@@ -4,7 +4,7 @@ import type { User } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Text } from "@/shared/ui/Text/Text";
-import * as cls from "./AuthGoogle.module.scss";
+import cls from "./AuthGoogle.module.scss";
 import { loginByGoogle } from "../../model/services/loginByGoogle/loginByGoogle";
 
 interface AuthGoogleProps {

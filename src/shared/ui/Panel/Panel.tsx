@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from "react";
 import React from "react";
-import * as cls from "./Panel.module.scss";
+import cls from "./Panel.module.scss";
 import { classNames } from "../../lib/classNames/classNames";
 
 interface PanelProps extends HTMLAttributes<HTMLDivElement> {

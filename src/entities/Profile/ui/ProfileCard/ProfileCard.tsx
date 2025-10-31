@@ -9,7 +9,7 @@ import { Button, ButtonTheme } from "@/shared/ui/Button/Button.tsx";
 import { Input } from "@/shared/ui/Input/Input";
 import { Loader } from "@/shared/ui/Loader/Loader";
 import { Text } from "@/shared/ui/Text/Text.tsx";
-import * as cls from "./ProfileCard.module.scss";
+import cls from "./ProfileCard.module.scss";
 import type { IProfile } from "../../model/types/IProfile";
 
 interface ProfileCardProps {
