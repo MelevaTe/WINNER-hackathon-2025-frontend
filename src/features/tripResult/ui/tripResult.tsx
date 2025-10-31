@@ -18,10 +18,12 @@ export const TripResult = ({ className }: tripResultProps) => {
 				<Card key={result.id}>
 					<div className={cls.resultContent}>
 						<div className={cls.resultImage}>
-							<img
-								src={result?.image}
-								alt={result.title}
-							/>
+							{result.image !== null && (
+								<img
+									src={result.image}
+									alt="Place"
+								/>
+							)}
 						</div>
 
 						<div className={cls.resultInfo}>

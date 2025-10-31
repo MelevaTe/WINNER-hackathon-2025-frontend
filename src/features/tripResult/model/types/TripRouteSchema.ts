@@ -13,7 +13,7 @@ export interface TripPlace {
 	latitude: number;
 	longitude: number;
 	address: string;
-	image?: string;
+	image: string | null;
 	events: TripEvent[];
 }
 
