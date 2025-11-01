@@ -45,6 +45,14 @@ export const Map = ({ className, markers = [], onMapClick, onResetRoute, theme }
 		let resetControl: mapgl.Control | null = null;
 		let resetButton: HTMLElement | null = null;
 
+		const mapClickHandler = (e: any) => {
+			if (onMapClickRef.current) {
+				const lat = e.lngLat[0];
+				const lon = e.lngLat[1];
+				onMapClickRef.current({ lat, lon });
+			}
+		};
+
 		const success = (pos: GeolocationPosition) => {
 			const mapglAPI = mapglRef.current;
 			const currentMap = mapRef.current;
@@ -111,13 +119,6 @@ export const Map = ({ className, markers = [], onMapClick, onResetRoute, theme }
 				map.setStyleById(THEME_TO_STYLE_ID[themeRef.current]);
 			}
 
-			const mapClickHandler = (e: any) => {
-				if (onMapClickRef.current) {
-					const lat = e.lngLat[0];
-					const lon = e.lngLat[1];
-					onMapClickRef.current({ lat, lon });
-				}
-			};
 			map.on("click", mapClickHandler);
 
 			const controlContent = `
@@ -166,7 +167,7 @@ export const Map = ({ className, markers = [], onMapClick, onResetRoute, theme }
 
 		return () => {
 			if (mapRef.current) {
-				mapRef.current.off("click");
+				mapRef.current.off("click", mapClickHandler);
 			}
 
 			markersRef.current.forEach((m) => m.destroy());

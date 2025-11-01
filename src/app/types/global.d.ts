@@ -1,5 +1,3 @@
-/// <reference path="../../../node_modules/@2gis/mapgl/global.d.ts" />
-
 declare module "*.scss" {
 	interface IClassNames {
 		[className: string]: string;
