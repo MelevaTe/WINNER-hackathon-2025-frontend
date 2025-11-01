@@ -30,8 +30,12 @@
   z-index: 150;
   display: flex;
   max-width: 100%;
-  padding: 0 16px;
-  max-height: calc(100vh - 20rem);
+  max-height: calc(100vh - 25rem);
+}
+
+.MobileWrapper {
+  overflow-y: auto;
+  width: 100%;
 }
 
 .OpenButton {

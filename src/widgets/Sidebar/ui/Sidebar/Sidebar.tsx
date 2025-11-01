@@ -34,7 +34,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 
 				{mobileSheetOpen && (
 					<div className={cls.MobileSheet}>
-						<Panel className={cls.Wrapper}>
+						<Panel className={cls.MobileWrapper}>
 							<button
 								className={cls.CloseButton}
 								onClick={() => setMobileSheetOpen(false)}
