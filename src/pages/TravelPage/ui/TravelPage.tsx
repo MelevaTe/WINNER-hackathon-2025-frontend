@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { getTripResultData, getTripRouteMarkers } from "src/features/tripResult";
 import { useTheme } from "@/app/providers/ThemeProvider";
@@ -28,24 +28,27 @@ const TravelPage: React.FC = () => {
 	const tripResult = useSelector(getTripResultData);
 	const isRouteBuilt = Boolean(tripResult?.places && tripResult.places.length > 0);
 
-	const { theme, toggleTheme } = useTheme();
+	const { theme } = useTheme();
 
-	const handleResetRoute = () => {
+	const handleResetRoute = useCallback(() => {
 		dispatch(routePointsActions.clearRoutePoints());
 		dispatch(tripResultActions.clearTripResult());
-	};
+	}, [dispatch]);
 
-	const handleMapClick = (coords: { lat: number; lon: number }) => {
-		const coordArray: [number, number] = [coords.lat, coords.lon];
+	const handleMapClick = useCallback(
+		(coords: { lat: number; lon: number }) => {
+			const coordArray: [number, number] = [coords.lat, coords.lon];
 
-		if (!fromCoords) {
-			dispatch(routePointsActions.setFromCoords(coords));
-			dispatch(reverseGeocode(coordArray));
-		} else if (!toCoords) {
-			dispatch(routePointsActions.setToCoords(coords));
-			dispatch(reverseGeocodeTo(coordArray));
-		}
-	};
+			if (!fromCoords) {
+				dispatch(routePointsActions.setFromCoords(coords));
+				dispatch(reverseGeocode(coordArray));
+			} else if (!toCoords) {
+				dispatch(routePointsActions.setToCoords(coords));
+				dispatch(reverseGeocodeTo(coordArray));
+			}
+		},
+		[dispatch, fromCoords, toCoords]
+	);
 
 	if (fromCoords) {
 		markers.push({
